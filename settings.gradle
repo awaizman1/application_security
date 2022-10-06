@@ -8,3 +8,8 @@
  */
 
 rootProject.name = 'application_security'
+
+include(
+        'resource-server',
+        'client-credentials'
+)

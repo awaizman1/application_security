@@ -1,0 +1,43 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.7.4'
+    id 'io.spring.dependency-management' version "1.0.14.RELEASE"
+    id 'org.openapi.generator' version '6.0.1'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'io.swagger.core.v3:swagger-annotations:2.1.13'
+//
+//    testImplementation libs.spring.boot.starter.test
+}
+
+// https://joehonour.medium.com/java-developing-a-spring-service-using-an-openapi-contract-first-approach-37dfd6422a9c
+openApiGenerate {
+    inputSpec = "$projectDir/src/main/resources/openapi/resource-server.yaml"
+    generatorName = "spring"
+    outputDir = "$buildDir/generated/openapi"
+    configOptions = [
+            apiPackage             : "resource_server.generated.api",
+            modelPackage           : "resource_server.generated.model",
+            interfaceOnly          : "true",
+            useOptional            : "true",
+            dateLibrary            : "java8",
+            hideGenerationTimestamp: "true"
+    ]
+}
+
+// using task.map will ensure gradle up-to-date
+sourceSets.main.java.srcDir tasks.named('openApiGenerate').map {"${it.outputDir.get()}/src/main/java" }
+
+// forces generation of spring controllers on compile, adding them to the sources for compilation
+compileJava {
+    dependsOn tasks.named('openApiGenerate')
+}

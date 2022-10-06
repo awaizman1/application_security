@@ -1,0 +1,28 @@
+openapi: 3.0.3
+
+info:
+  title: Resource Server API
+  version: '1.0'
+
+servers:
+  - url: http://resource_server:8080/v1
+
+components:
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT    # optional, arbitrary value for documentation purposes
+
+paths:
+  /hello:
+    get:
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            text/plain:
+              schema:
+                type: string
