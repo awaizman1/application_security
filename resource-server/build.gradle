@@ -17,7 +17,7 @@ dependencies {
     implementation 'io.swagger.core.v3:swagger-annotations:2.2.3'
     implementation 'org.openapitools:jackson-databind-nullable:0.2.3'
 
-    testImplementation libs.spring.boot.starter.test
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 // https://joehonour.medium.com/java-developing-a-spring-service-using-an-openapi-contract-first-approach-37dfd6422a9c

@@ -15,5 +15,5 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
 //    implementation libs.spring.boot.starter.validation
 
-    testImplementation libs.spring.boot.starter.test
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
