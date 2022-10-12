@@ -14,60 +14,6 @@ dependencies {
 //    implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
 //    implementation libs.spring.boot.starter.validation
-//    implementation libs.spring.boot.starter.web
-//
-//    testImplementation libs.spring.boot.starter.test
-}
 
-//// https://joehonour.medium.com/java-developing-a-spring-service-using-an-openapi-contract-first-approach-37dfd6422a9c
-//def openapiDir = "$projectDir/src/main/resources/openapi"
-//def apis = [
-//        frozen: [
-//                inputSpec: "${openapiDir}/frozen-dataset.yaml",
-//        ],
-//        live  : [
-//                inputSpec: "${openapiDir}/live-dataset.yaml"
-//        ],
-//        debug : [
-//                inputSpec: "${openapiDir}/debug.yaml"
-//        ]
-//]
-//
-//def openApiGenerateTasks = apis.collect { name, props ->
-//
-//    def task = project.tasks.register("openApiGenerate${name.capitalize()}", org.openapitools.generator.gradle.plugin.tasks.GenerateTask) {
-//        group = tasks.openApiGenerate.group
-//        description = tasks.openApiGenerate.description
-//
-//        inputSpec = props.inputSpec
-//        generatorName = "spring"
-//        // separate outputDir per api to allow gradle up-to-date
-//        outputDir = "$buildDir/generated/openapi/${name}"
-//        def defaultConfigOptions = [
-//                apiPackage             : "amat.dc.dataset.generated.${name}.resource_server.controller.api",
-//                modelPackage           : "amat.dc.dataset.generated.${name}.resource_server.controller.model",
-//                interfaceOnly          : "true",
-//                useOptional            : "true",
-//                dateLibrary            : "java8",
-//                hideGenerationTimestamp: "true"
-//        ]
-//        def overrideConfigOptions = props.configOptions ?: [:]
-//        configOptions = defaultConfigOptions + overrideConfigOptions
-//    }
-//
-//    // using task.map will ensure gradle up-to-date
-//    sourceSets.main.java.srcDir task.map { "${it.outputDir.get()}/src/main/java" }
-//
-//    return task
-//}
-//
-//// forces generation of spring controllers on compile, adding them to the sources for compilation
-//compileJava {
-//    dependsOn openApiGenerateTasks
-//}
-//
-//apply from: "$rootDir/gradle/testwithdb.gradle"
-//
-//test {
-//    dependsOn copyMariaDbCmpSchemaForTests, copyMariaDbManagementSchemaForTests
-//}
+    testImplementation libs.spring.boot.starter.test
+}
