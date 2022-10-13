@@ -14,8 +14,8 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests(authz -> authz
-                        .antMatchers(HttpMethod.GET, "/pets").hasAuthority("ROLE_pet-store-resource-server.user")
-                        .antMatchers(HttpMethod.POST, "/pets").hasAuthority("ROLE_pet-store-resource-server.admin")
+                        .antMatchers(HttpMethod.GET, "/pets").hasAuthority("ROLE_pet-store.user")
+                        .antMatchers(HttpMethod.POST, "/pets").hasAuthority("ROLE_pet-store.admin")
 //                        .antMatchers(HttpMethod.POST, "/foos").hasAuthority("SCOPE_write")
                         .anyRequest().authenticated())
                 .oauth2ResourceServer().jwt().jwtAuthenticationConverter(jwtAuthenticationConverter());
