@@ -16,7 +16,6 @@ public class SecurityConfig {
                 .authorizeRequests(authz -> authz
                         .antMatchers(HttpMethod.GET, "/pets").hasAuthority("ROLE_pet-store.user")
                         .antMatchers(HttpMethod.POST, "/pets").hasAuthority("ROLE_pet-store.admin")
-//                        .antMatchers(HttpMethod.POST, "/foos").hasAuthority("SCOPE_write")
                         .anyRequest().authenticated())
                 .oauth2ResourceServer().jwt().jwtAuthenticationConverter(jwtAuthenticationConverter());
         return http.build();
