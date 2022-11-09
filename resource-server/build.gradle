@@ -18,6 +18,7 @@ dependencies {
     implementation 'org.openapitools:jackson-databind-nullable:0.2.3'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
 }
 
 // https://joehonour.medium.com/java-developing-a-spring-service-using-an-openapi-contract-first-approach-37dfd6422a9c
@@ -40,4 +41,8 @@ sourceSets.main.java.srcDir tasks.named('openApiGenerate').map {"${it.outputDir.
 // forces generation of spring controllers on compile, adding them to the sources for compilation
 compileJava {
     dependsOn tasks.named('openApiGenerate')
+}
+
+test {
+    useJUnitPlatform()
 }
